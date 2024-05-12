@@ -31,7 +31,7 @@ class Employee
     string designation;
     int noOfExperience;
     float basicSalary;
-    float insuranceAmount,hra,ta,grosspay;
+    float insuranceAmount, hra, ta, grosspay;
 
     public Employee(string name, string designation, int noOfExperience, float basicSalary, float insuranceAmount)
     {
@@ -42,21 +42,22 @@ class Employee
         this.insuranceAmount = insuranceAmount;
     }
 
-    public double CalculateSalary()
+    public void CalculateSalary()
     {
-        hra=(20)/100*basicSalary;
-        ta=(10)/100*basicSalary;
-        grosspay=basicSalary+hra+ta-insuranceAmount;
+        hra = (20.0f / 100) * basicSalary;
+        ta = (10.0f / 100) * basicSalary;
+        grosspay = basicSalary + hra + ta - insuranceAmount;
     }
 
     public void DisplaySalary()
     {
+        CalculateSalary(); // Call CalculateSalary() to calculate grosspay before displaying
         Console.WriteLine($"Employee Name: {name}");
         Console.WriteLine($"Designation: {designation}");
         Console.WriteLine($"No. of Experience: {noOfExperience} years");
         Console.WriteLine($"Basic Salary: {basicSalary:C}");
         Console.WriteLine($"Insurance Amount: {insuranceAmount:C}");
-        Console.WriteLine($"Calculated Salary: {CalculateSalary():C}");
+        Console.WriteLine($"Calculated Salary: {grosspay:C}");
     }
 }
 
@@ -74,10 +75,10 @@ class Program
         int noOfExperience = int.Parse(Console.ReadLine());
 
         Console.WriteLine("Enter Basic Salary:");
-        double basicSalary = double.Parse(Console.ReadLine());
+        float basicSalary = float.Parse(Console.ReadLine());
 
         Console.WriteLine("Enter Insurance Amount:");
-        double insuranceAmount = double.Parse(Console.ReadLine());
+        float insuranceAmount = float.Parse(Console.ReadLine());
 
         Employee employee = new Employee(name, designation, noOfExperience, basicSalary, insuranceAmount);
 
